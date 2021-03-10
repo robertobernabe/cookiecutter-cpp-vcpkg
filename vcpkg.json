@@ -1,8 +1,9 @@
 {
-    "name": "fmt-example",
-    "version": "0.0.1",
+    "name": "cookiecutter-cpp-vcpkg",
+    "version": "0.0.0",
     "dependencies": [
         "fmt",
-        "cppitertools"
+        "cppitertools",
+        "gtest"
     ]
 }
