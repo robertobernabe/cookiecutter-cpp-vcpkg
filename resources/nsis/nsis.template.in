@@ -1,0 +1,26 @@
+;--------------------------------
+; Do necessary inclusions.
+!include .......nsis_definitions.nsh
+!include MUI2.nsh
+Basic variables and macros are defined:
+
+;--------------------------------
+; Basic values definitions.
+!define INST_DIR "@CPACK_TEMPORARY_DIRECTORY@"
+
+; Name and file.
+Name "${APP_NAME}"
+OutFile "@CPACK_TOPLEVEL_DIRECTORY@/@CPACK_OUTPUT_FILE_NAME@"
+
+; Set custom branding text.
+BrandingText "${APP_NAME}"
+
+; Set compression.
+SetCompressor /SOLID /FINAL lzma
+
+;Default installation folder.
+InstallDir "@CPACK_NSIS_INSTALL_ROOT@${APP_NAME}"
+InstallDirRegKey HKCU "Software${APP_NAME}" "Install Directory"
+
+; Require administrator access.
+RequestExecutionLevel admin

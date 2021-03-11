@@ -30,7 +30,6 @@ option(USE_NSIS "Use NSIS generator to produce installer" OFF)
 add_subdirectory(src)
 include(CTest)
 add_subdirectory(test)
-include(CPack)
 
 if(USE_NSIS)
   set(CPACK_GENERATOR "NSIS")
@@ -55,3 +54,12 @@ set(CPACK_NSIS_INSTALLED_ICON_NAME "resources/${APP_LOW_NAME}.ico")
 set(CPACK_NSIS_HELP_LINK ${APP_URL})
 set(CPACK_NSIS_URL_INFO_ABOUT ${APP_URL})
 set(CPACK_NSIS_CONTACT ${APP_EMAIL})
+
+include(CPack)
+# Configure file with custom definitions for NSIS.
+configure_file(${PROJECT_SOURCE_DIR}/resources/nsis/nsis_definitions.nsh.in
+               ${CMAKE_CURRENT_BINARY_DIR}/nsis_definitions.nsh)
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/resources/nsis ${CMAKE_MODULE_PATH})
+
+install(TARGETS cookiecutter-cpp-vcpkg RUNTIME DESTINATION bin
+                                               COMPONENT applications)
