@@ -1,6 +1,7 @@
 #include <fmt/format.h>
+#include <cookiecutter-cpp-vcpkg/cookiecutter_cpp_vcpkg.hpp>
 
 int main()
 {
-    fmt::print("Hello World!\n");
+    fmt::print(robertobernabe::cookiecuttercppvcpkg::MSG);
 }
