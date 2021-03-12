@@ -19,6 +19,7 @@ if(DEFINED VCPKG_ROOT)
 endif()
 
 set(APP_LOW_NAME "cookiecutter-cpp-vcpkg")
+set(APP_DISPLAY_NAME "Cookiecutter Cpp Vcpkg")
 set(APP_VERSION "0.0.1")
 set(APP_URL "https://github.com/robertobernabe/cookiecutter-cpp-vcpkg")
 set(APP_EMAIL "hello@fschaeffeler.de")
@@ -50,16 +51,17 @@ set(CPACK_SOURCE_PACKAGE_FILE_NAME
     "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
 set(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
 
-set(CPACK_NSIS_INSTALLED_ICON_NAME "resources/${APP_LOW_NAME}.ico")
-set(CPACK_NSIS_HELP_LINK ${APP_URL})
-set(CPACK_NSIS_URL_INFO_ABOUT ${APP_URL})
 set(CPACK_NSIS_CONTACT ${APP_EMAIL})
+set(CPACK_NSIS_DISPLAY_NAME ${APP_DISPLAY_NAME})
+set(CPACK_NSIS_HELP_LINK ${APP_URL})
+set(CPACK_NSIS_INSTALLED_ICON_NAME
+    "${PROJECT_SOURCE_DIR}/resources/${APP_LOW_NAME}.ico")
+set(CPACK_NSIS_MUI_ICON "${PROJECT_SOURCE_DIR}/resources/${APP_LOW_NAME}.ico")
+set(CPACK_NSIS_MUI_UNIICON
+    "${PROJECT_SOURCE_DIR}/resources/${APP_LOW_NAME}.ico")
+set(CPACK_NSIS_PACKAGE_NAME ${APP_DISPLAY_NAME})
+set(CPACK_NSIS_URL_INFO_ABOUT ${APP_URL})
 
 include(CPack)
-# Configure file with custom definitions for NSIS.
-configure_file(${PROJECT_SOURCE_DIR}/resources/nsis/nsis_definitions.nsh.in
-               ${CMAKE_CURRENT_BINARY_DIR}/nsis_definitions.nsh)
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/resources/nsis ${CMAKE_MODULE_PATH})
-
 install(TARGETS cookiecutter-cpp-vcpkg RUNTIME DESTINATION bin
                                                COMPONENT applications)
